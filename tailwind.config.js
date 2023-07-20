@@ -14,6 +14,7 @@ module.exports = {
         link: "#343944",
         font: "#343944",
         grey: "#bbb",
+        disabled: "#F8F8F8",
         greyFont: "#9c9c9c",
         middleGrey: "#8c96a3",
         lightGrey: "#c5ccd6",
@@ -64,6 +65,12 @@ module.exports = {
         message: "12px",
         form: {
           small: "13px",
+        },
+      },
+      boxShadow: {
+        field: {
+          switch: "1px 0px 8px 0 rgba(0,0,48,.18)",
+          active: "0 0 10px 0 rgba(0, 0, 0, 0.05)",
         },
       },
     },

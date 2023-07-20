@@ -6,71 +6,49 @@ import FormItemLabel from "../../items/FormItemLabel/FormItemLabel";
 import TextItem from "../../items/TextItems/TextItem";
 import classNames from "classnames";
 
-export type FieldWrapperOwnProps<FieldValue = any> = {
+export interface FieldWrapperOwnProps<FieldValue = any> {
   input?: FieldInputProps<FieldValue>;
   meta?: FieldMetaState<FieldValue>;
-  // say if the input has a value
   hasValue?: boolean;
-  // Additional className to add
   className?: string;
-  // Custom styling for the global field
   fieldWrapperClassName?: string;
-  fieldWrapperStyle?: any;
-  // Add border to the input
+  fieldWrapperStyle?: React.CSSProperties;
   withBorder?: boolean;
-  // Add border to the field value
   withValueBorder?: boolean;
-  // Custom styling for the content wrapper ( = content without icons)
   contentWrapperClassName?: string;
-  contentWrapperStyle?: any;
-  // Custom styling for the value
+  contentWrapperStyle?: React.CSSProperties;
   valueClassName?: string;
-  valueStyle?: any;
-  // Center the value (not always applicable)
+  valueStyle?: React.CSSProperties;
   centerValue?: boolean;
-  // Decrease padding for the types with-border and with-value-border
   small?: boolean;
-  // Remove all padding for types with-value-border
   noPadding?: boolean;
-  // effect if active/focused
   effect?: boolean;
-  // disabled or not
   disabled?: boolean;
-  // shadow style for field
   shadow?: boolean;
-  // Right icon
   iconRight?: string;
-  iconRightStyle?: any;
+  iconRightStyle?: React.CSSProperties;
   iconRightClassName?: string;
   iconRightAction?: () => void;
-  // Left icon
   iconLeft?: string;
-  iconLeftStyle?: any;
+  iconLeftStyle?: React.CSSProperties;
   iconLeftClassName?: string;
   iconLeftAction?: () => void;
-  // Children to append
   children?: ReactNode;
-  // Other children to display outside of the value
   secondChildren?: ReactNode;
-  // Add class name on active effect
   effectActiveClassName?: string;
-  // Overwrite bar color for active - error - valid
   activeBarColor?: string;
   errorBarColor?: string;
   validBarColor?: string;
-  // add not string near label in italic
   notRequired?: string;
-  // tabIndex
   tabIndex?: number;
   onFocus?: () => void;
   onBlur?: () => void;
   ignoreTouched?: boolean;
   noShadow?: boolean;
-  // for info message between label and input
   extraInfo?: string;
   extraInfoClassName?: string;
   isTextarea?: boolean;
-};
+}
 
 export type FieldWrapperProps = FormItemLabelProps & FieldWrapperOwnProps;
 
@@ -160,13 +138,13 @@ export class FieldWrapper extends Component<
           {...this.props}
           noFontSize={noFontSize}
           className={classNames(
-            !noFontSize && "color-success text-align-left margin-y-item"
+            !noFontSize && "text-success text-align-left my-2"
           )}
         />
         {extraInfo && (
           <div
             className={classNames(
-              "color-success text-align-left margin-y-item",
+              "text-success text-align-left my-2",
               extraInfoClassName
             )}
           >
@@ -240,20 +218,17 @@ export class FieldWrapper extends Component<
           {this.renderLabel()}
           <div
             className={classNames(
-              "border-radius-default p-y-form p-y-formInput p-x-form",
+              "rounded-default py-1 py-2 px-3",
               contentWrapperClassName,
               centerValue && "text-align-center justify-center",
-              disabled && "colors-input-disabled",
+              disabled && "text-disabled",
               disabled && disabledClassName
             )}
             style={contentWrapperStyle}
           >
             {this.iconLeft()}
             <div
-              className={classNames(
-                "padding-y-form padding-x-form",
-                valueClassName
-              )}
+              className={classNames("py-1 px-3", valueClassName)}
               style={valueStyle}
             >
               {children}
@@ -291,7 +266,7 @@ export class FieldWrapper extends Component<
           {secondChildren}
           <div
             className={classNames(
-              "relative z-30 w-0 h-px bottom-0 left-0",
+              "relative z-10 w-0 h-px bottom-0 left-0",
               statusBarClassName
             )}
             style={
@@ -406,7 +381,7 @@ export class FieldWrapper extends Component<
           borderType,
           noShadow && "boxShadow-field-active",
           !label && "pt-0",
-          small && "p-y-formInput pb-0",
+          small && "py-2 pb-0",
           noPadding && "p-0",
           shadow && "",
           // meta related
@@ -417,8 +392,8 @@ export class FieldWrapper extends Component<
           effect && "",
           effect && (active || inputHasValue) && "",
           effect && (active || inputHasValue) && effectActiveClassName,
-          iconLeft && "pl-width-form-lateralIcon",
-          iconRight && "pr-width-form-lateralIcon",
+          iconLeft && "pl-9",
+          iconRight && "pr-9",
           isTextarea && "",
           fieldWrapperClassName,
           beforeInputText && "flex aligns-items-center",
